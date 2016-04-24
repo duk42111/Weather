@@ -1,0 +1,38 @@
+# xcode noise
+
+InfoPlist.h
+
+# old skool
+.svn
+
+# osx noise
+.DS_Store
+profile
+
+# Xcode
+build/
+Builds/
+.idea/
+
+xcuserdata
+profile
+DerivedData
+
+!default.pbxuser
+!default.mode1v3
+!default.mode2v3
+!default.perspectivev3
+!default.xcworkspace
+
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+# *.xcworkspace
+*.xccheckout
+
+*.xcuserstate
+*.moved-aside
+Push/push.json
+Push/send.sh
+Push/send_proxy.sh

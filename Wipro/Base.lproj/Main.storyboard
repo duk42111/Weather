@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="WSc-tm-xfL">
+            <objects>
+                <navigationController id="cfV-pf-9un" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="X5I-jk-iC2">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Y6F-6U-W9X"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mSL-iz-pZ2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-365" y="488"/>
+        </scene>
+        <!--Weather View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="WeatherViewController" customModule="Wipro" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weather in xxxxx, xxx" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D2g-VO-br3">
+                                <rect key="frame" x="0.0" y="64" width="600" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="bJA-gP-FS4"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fWd-kY-iSQ">
+                                <rect key="frame" x="0.0" y="114" width="600" height="486"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="D2g-VO-br3" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="0gm-7u-4BS"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="fWd-kY-iSQ" secondAttribute="bottom" id="Bdf-s1-W4n"/>
+                            <constraint firstItem="fWd-kY-iSQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Bew-uT-wGx"/>
+                            <constraint firstAttribute="trailing" secondItem="fWd-kY-iSQ" secondAttribute="trailing" id="Eff-YN-phZ"/>
+                            <constraint firstAttribute="trailing" secondItem="D2g-VO-br3" secondAttribute="trailing" id="LI0-7q-QfJ"/>
+                            <constraint firstItem="fWd-kY-iSQ" firstAttribute="top" secondItem="D2g-VO-br3" secondAttribute="bottom" id="uz8-gn-Rig"/>
+                            <constraint firstItem="D2g-VO-br3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="zYm-sq-pEm"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Xon-Ug-a2B"/>
+                    <connections>
+                        <outlet property="tableView" destination="fWd-kY-iSQ" id="Jar-Qr-mZN"/>
+                        <outlet property="titleLabel" destination="D2g-VO-br3" id="WPX-LJ-5Xh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="373" y="481"/>
+        </scene>
+    </scenes>
+</document>
