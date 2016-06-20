@@ -10,8 +10,8 @@ import UIKit
 
 class WeatherViewController: UIViewController,UITableViewDataSource {
 
+    private(set) var weatherViewRenderer:WeatherViewRenderer? = nil
     private(set) var weatherViewModel:WeatherViewModel? = nil
-    private(set) var weatherLogic:WeatherLogic? = nil
     
     @IBOutlet var tableView:UITableView!
     @IBOutlet var titleLabel:UILabel!
@@ -23,7 +23,7 @@ class WeatherViewController: UIViewController,UITableViewDataSource {
         self.tableView.estimatedRowHeight = 70
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         self.tableView.sectionHeaderHeight = 50
-        weatherLogic = WeatherLogic.init(completion: { [weak self] (success) in
+        weatherViewModel = WeatherViewModel.init(completion: { [weak self] (success) in
             
             guard self != nil else {
                 return
@@ -31,7 +31,7 @@ class WeatherViewController: UIViewController,UITableViewDataSource {
             
             dispatch_async(dispatch_get_main_queue(), {
                 
-                self!.weatherViewModel?.applyModel(self!.titleLabel)
+                self!.weatherViewRenderer?.applyModel(self!.titleLabel)
                 self!.tableView.dataSource = self!
                 self!.tableView.reloadData()
             })
@@ -41,7 +41,7 @@ class WeatherViewController: UIViewController,UITableViewDataSource {
                 self!.tableView.reloadData()
             }
         })
-        weatherViewModel = WeatherViewModel.init(viewController:self, logic:weatherLogic!)
+        weatherViewRenderer = WeatherViewRenderer.init(viewController:self, logic:weatherViewModel!)
     }
 
     
@@ -49,25 +49,25 @@ class WeatherViewController: UIViewController,UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        let item:(section:String,number:Int) = (weatherLogic?.itemsPerSections[section])!
+        let item:(section:String,number:Int) = (weatherViewModel?.itemsPerSections[section])!
         return item.number
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 
-        return (weatherLogic?.itemsPerSections.count)!
+        return (weatherViewModel?.itemsPerSections.count)!
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("WeatherCell")
-        weatherViewModel?.applyModel(cell!, indexPath: indexPath)
+        weatherViewRenderer?.applyModel(cell!, indexPath: indexPath)
         return cell!
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
-        let weather = weatherLogic?.weather(section)
+        let weather = weatherViewModel?.weather(section)
         return "Date: " + (weather?.dateString)!
     }
 }

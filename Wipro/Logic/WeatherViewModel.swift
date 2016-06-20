@@ -1,5 +1,5 @@
 //
-//  WeatherLogic.swift
+//  WeatherViewModel.swift
 //  Wipro
 //
 //  Created by Mladen Despotovic on 23/04/2016.
@@ -12,7 +12,7 @@ import CoreLocation
 typealias CurrentLocationClosure = (location:CLLocation?) -> ()
 typealias InitClosure = (success:Bool) -> Void
 
-class WeatherLogic: NSObject,CLLocationManagerDelegate {
+class WeatherViewModel: NSObject,CLLocationManagerDelegate {
     
     lazy var locationManager = CLLocationManager()
     lazy var geocoder = CLGeocoder()
@@ -114,6 +114,7 @@ class WeatherLogic: NSObject,CLLocationManagerDelegate {
         }
     }
     
+    // MARK: View Model Logic
     func countElements() {
     
         var numberOfItems:Dictionary<String,Int>? = [:]
@@ -153,5 +154,30 @@ class WeatherLogic: NSObject,CLLocationManagerDelegate {
         return weatherArray![index-1]
     }
     
+    func dateString(index: Int) -> String? {
+        
+        var dateString: String?
+        if let weatherArray = self.weatherArray {
+            
+            if index < weatherArray.count &&  weatherArray.count > 0 {
+                
+                dateString = weatherArray[index].date?.timeString()
+            }
+        }
+        return dateString
+    }
+    
+    func relativeTemperatureString(index: Int) -> String? {
+        
+        var relativeTemperatureString: String?
+        if let weatherArray = self.weatherArray {
+            
+            if index < weatherArray.count &&  weatherArray.count > 0 {
+                
+                relativeTemperatureString = String(format: "%.1f", weatherArray[index].temperature! - 273)
+            }
+        }
+        return relativeTemperatureString
+    }
 }
 

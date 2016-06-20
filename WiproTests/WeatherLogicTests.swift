@@ -1,5 +1,5 @@
 //
-//  WeatherLogicTests.swift
+//  WeatherViewModelTests.swift
 //  Wipro
 //
 //  Created by Mladen Despotovic on 23/04/2016.
@@ -10,7 +10,7 @@ import XCTest
 import CoreLocation
 @testable import Wipro
 
-class WeatherLogicTests: XCTestCase {
+class WeatherViewModelTests: XCTestCase {
     
     override func setUp() {
         
@@ -26,14 +26,14 @@ class WeatherLogicTests: XCTestCase {
     
     func testInit() {
         
-        let weatherLogic = WeatherLogic()
+        let weatherLogic = WeatherViewModel()
         XCTAssertNotNil(weatherLogic)
         XCTAssertNotNil(weatherLogic.locationManager)
     }
     
     func testPlaceForLocation() {
         
-        let weatherLogic = WeatherLogic()
+        let weatherLogic = WeatherViewModel()
         let expectation = expectationWithDescription("Asynchronous call for current place name expectation")
         let govLocation = CLLocation.init(latitude: 51.5034070, longitude: -0.1275920)
         
